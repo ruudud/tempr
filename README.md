@@ -1,32 +1,37 @@
-# Send temperature to Graphite
+# tempr.py: send temperature to Graphite
 
 Uses connected USB TEMPer device to do room temperature reading, and optionally
-sends data to a graphite instance.
+sends data to a [graphite][] instance.
 
 Tested using [this device][], but others may work as long as they identify them
 selves using a USB ID matching **0c45:7401 Microdia** (check using `lsusb`).
 
+
 ## Using
 ```
 $ ./tempr.py -h
-usage: tempr.py [-h] [--no-send] [--host host] [--port port] [--metric metric]
+usage: tempr.py [-h] [--no-send] [--fahrenheit] [--host host] [--port port]
+                [--metric metric]
 
 Send temperature to graphite using TEMPer device.
 
 optional arguments:
-    -h, --help       show this help message and exit
-    --no-send        do not send reading to graphite server (default: Do send)
-    --host host      address of graphite server (default: localhost)
-    --port port      port of graphite server (default: 2003)
-    --metric metric  graphite metric name (default: local.temp)
+  -h, --help       show this help message and exit
+  --no-send        do not send reading to graphite server (default: Do send)
+  --fahrenheit     output temperature in fahrenheit (default: Use celsius)
+  --host host      address of graphite server (default: localhost)
+  --port port      port of graphite server (default: 2003)
+  --metric metric  graphite metric name (default: local.temp)
 ```
 
 Do reading and send to remote graphite server (note `sudo`):
 ```
 $ sudo ./tempr.py --host graphite.local --metric kitchen.temp
-Got temperature reading of 27.6°C
+Temperature reading: 27.6°C
 Sending to Graphite on graphite.local:2003...
+Data sent successfully.
 ```
+
 
 ## Requirements
 **pyusb** (libusb bindings for Python) is required for reading temperatures.
@@ -43,8 +48,6 @@ with the following content:
 SUBSYSTEMS=="usb", ACTION=="add", ATTRS{idVendor}=="0c45", ATTRS{idProduct}=="7401", MODE="666"
 ```
 
-  
-
 
 ## Credits
 Magic values stolen from https://github.com/padelt/temper-python
@@ -54,4 +57,5 @@ Magic values stolen from https://github.com/padelt/temper-python
 MIT
 
 
+[graphite]: http://graphite.readthedocs.org/
 [this device]: http://www.dx.com/p/temper-usb-thermometer-temperature-recorder-for-pc-laptop-81105
