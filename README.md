@@ -8,8 +8,8 @@ selves using a USB ID matching **0c45:7401 Microdia** (check using `lsusb`).
 
 ## Using
 ```
-$ ./temp.py -h
-usage: temp.py [-h] [--no-send] [--host host] [--port port] [--metric metric]
+$ ./tempr.py -h
+usage: tempr.py [-h] [--no-send] [--host host] [--port port] [--metric metric]
 
 Send temperature to graphite using TEMPer device.
 
@@ -23,7 +23,7 @@ optional arguments:
 
 Do reading and send to remote graphite server (**NOTE** `sudo`):
 ```
-$ sudo ./temp.py --host graphite.local --metric kitchen.temp
+$ sudo ./tempr.py --host graphite.local --metric kitchen.temp
 Got temperature reading of 27.6°C
 Sending to Graphite on graphite.local:2003...
 ```
