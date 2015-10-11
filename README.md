@@ -21,7 +21,7 @@ optional arguments:
     --metric metric  graphite metric name (default: local.temp)
 ```
 
-Do reading and send to remote graphite server (**NOTE** `sudo`):
+Do reading and send to remote graphite server (note `sudo`):
 ```
 $ sudo ./tempr.py --host graphite.local --metric kitchen.temp
 Got temperature reading of 27.6°C
