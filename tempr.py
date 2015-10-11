@@ -12,9 +12,9 @@ VID = 0x0c45L
 PID = 0x7401L
 TIMEOUT = 4000
 COMMANDS = {
-    'temp': '\x01\x80\x33\x01\x00\x00\x00\x00',
-    'ini1': '\x01\x82\x77\x01\x00\x00\x00\x00',
-    'ini2': '\x01\x86\xff\x01\x00\x00\x00\x00',
+  'temp': '\x01\x80\x33\x01\x00\x00\x00\x00',
+  'ini1': '\x01\x82\x77\x01\x00\x00\x00\x00',
+  'ini2': '\x01\x86\xff\x01\x00\x00\x00\x00',
 }
 REQ_INT_LEN = 8
 ENDPOINT = 0x82
@@ -84,7 +84,6 @@ def _to_c(data):
   data_s = "".join([chr(byte) for byte in data])
   temp_c = 125.0/32000.0*(struct.unpack('>h', data_s[2:4])[0])
   return temp_c
-  return "%0.1f" % temp_c
 
 def get_reading():
   return _to_c(_temp_reading(_get_device()))
