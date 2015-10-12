@@ -52,6 +52,7 @@ def _read(dev):
 
 def _take_control(dev):
   try:
+    dev.detach_kernel_driver(0)
     dev.detach_kernel_driver(INTERFACE)
   except usb.USBError:
     pass
